@@ -47,5 +47,30 @@ foreign key (id_servicio)
 references servicio (id_servicio)
 );
 
+create table turno(
+id_turno serial primary key,
+hora_inicio timestamp not null,
+id_tarifa integer not null,
+duracion_final interval not null,
+id_vehiculo bigint not null,
+id_cliente bigint not null,
+precio_final decimal(10,2) not null,
+trabajadores int not null,
+estado varchar(30) not null check(estado in ('Pendiente','Confirmado','En Proceso','Finalizado')),
+constraint fk_tarifa
+foreign key (id_tarifa)
+references tarifaServicio(id_tarifa),
+constraint fk_vehiculo
+foreign key (id_vehiculo)
+references vehiculo(id_vehiculo),
+constraint fk_cliente
+foreign key (id_cliente)
+references cliente(id_cliente)
+);
+
+create table  bloqueoHorario(
+id_bloqueo serial not null,
+fechaHoraInicio timestamp not null,
+fechaHoraFin timestamp not null);
 
 
