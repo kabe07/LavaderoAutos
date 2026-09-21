@@ -34,3 +34,18 @@ foreign key (id_cliente)
 foreign key (id_vehiculo)
 	references vehiculo (id_vehiculo)
 );
+
+create table tarifaServicio(
+id_tarifa serial primary key,
+id_servicio int not null,
+tipo_vehiculo varchar(25) not null,
+nivel_suciedad varchar(30) not null,
+precio decimal(10,2) not null,
+duracion_base interval not null,
+constraint fk_servicio
+foreign key (id_servicio)
+references servicio (id_servicio)
+);
+
+
+
